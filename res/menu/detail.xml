@@ -6,5 +6,10 @@
         android:orderInCategory="100"
         android:title="@string/action_star"
         app:showAsAction="withText"/>
+    <item
+        android:id="@+id/action_share"
+        android:orderInCategory="100"
+        android:title="@string/action_share"
+        app:showAsAction="withText"/>
 
 </menu>

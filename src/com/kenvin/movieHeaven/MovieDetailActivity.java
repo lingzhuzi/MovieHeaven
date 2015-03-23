@@ -58,7 +58,9 @@ public class MovieDetailActivity extends ActionBarActivity {
 		case R.id.action_star:
 			starThisMovie();
 			break;
-
+		case R.id.action_share:
+			shareThisMovie();
+			break;
 		default:
 			break;
 		}
@@ -74,6 +76,14 @@ public class MovieDetailActivity extends ActionBarActivity {
 			new StarredMovie(title, url).save();
 			Toast.makeText(this, "收藏成功", Toast.LENGTH_LONG).show();
 		}
+	}
+	
+	private void shareThisMovie(){
+		Intent intent = new Intent(Intent.ACTION_SEND);
+		intent.setType("text/plain");  
+		intent.putExtra(Intent.EXTRA_SUBJECT, "分享");  
+		intent.putExtra(Intent.EXTRA_TEXT, "【阳光电影】" + title + "：" + url + "，分享自阳光电影安卓客户端[https://raw.githubusercontent.com/lingzhuzi/MovieHeaven/master/release/MovieHeaven.apk]");  
+		startActivity(intent);
 	}
 	
 	private boolean hasStarred(String title, String url){
