@@ -61,6 +61,10 @@
             android:name=".StarredMovieActivity"
             android:label="@string/title_activity_starred_movie" >
         </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about" >
+        </activity>
     </application>
 
 </manifest>

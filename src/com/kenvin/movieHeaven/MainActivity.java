@@ -167,6 +167,10 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 			intent = new Intent(this, StarredMovieActivity.class);
 			startActivity(intent);
 			break;
+		case R.id.action_about:
+			intent = new Intent(this, AboutActivity.class);
+			startActivity(intent);
+			break;
 		default:
 			break;
 		}
