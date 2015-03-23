@@ -1,5 +1,7 @@
 package com.kenvin.movieHeaven;
 
+import com.kenvin.movieHeaven.fragments.SettingsFragment;
+
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 

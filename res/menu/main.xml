@@ -13,6 +13,10 @@
         android:title="@string/action_settings"
         app:showAsAction="withText"/>
     <item
+        android:id="@+id/action_my_starred"
+        android:title="@string/action_my_starred"
+        app:showAsAction="withText"/>
+    <item
         android:id="@+id/action_about"
         android:title="@string/action_about"
         app:showAsAction="withText"/>

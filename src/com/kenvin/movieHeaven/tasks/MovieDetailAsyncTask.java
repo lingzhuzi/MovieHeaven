@@ -1,4 +1,4 @@
-package com.kenvin.movieHeaven;
+package com.kenvin.movieHeaven.tasks;
 
 import java.io.IOException;
 import org.jsoup.Jsoup;

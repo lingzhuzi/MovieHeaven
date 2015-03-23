@@ -1,5 +1,7 @@
 package com.kenvin.movieHeaven;
 
+import com.kenvin.movieHeaven.fragments.SearchResultFragment;
+
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;

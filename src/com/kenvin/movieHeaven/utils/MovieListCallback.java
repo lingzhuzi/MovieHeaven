@@ -1,4 +1,4 @@
-package com.kenvin.movieHeaven;
+package com.kenvin.movieHeaven.utils;
 
 import java.util.List;
 

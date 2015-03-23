@@ -1,7 +1,9 @@
-package com.kenvin.movieHeaven;
+package com.kenvin.movieHeaven.fragments;
 
 import java.util.Set;
 
+import com.kenvin.movieHeaven.MovieHeavenApplication;
+import com.kenvin.movieHeaven.R;
 import android.os.Bundle;
 import android.preference.MultiSelectListPreference;
 import android.preference.Preference;

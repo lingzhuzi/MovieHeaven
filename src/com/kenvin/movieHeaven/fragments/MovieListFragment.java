@@ -1,7 +1,14 @@
-package com.kenvin.movieHeaven;
+package com.kenvin.movieHeaven.fragments;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.kenvin.movieHeaven.MovieDetailActivity;
+import com.kenvin.movieHeaven.R;
+import com.kenvin.movieHeaven.tasks.MovieListAsyncTask;
+import com.kenvin.movieHeaven.utils.FooterView;
+import com.kenvin.movieHeaven.utils.MovieListCallback;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -100,6 +107,8 @@ public class MovieListFragment extends ListFragment implements MovieListCallback
 		this.movieNameList.addAll(movieNameList);
 		this.movieUrlList.addAll(movieUrlList);
 		adapter.notifyDataSetChanged();
+		progressLayout.setVisibility(View.INVISIBLE);
+		getListView().setVisibility(View.VISIBLE);
 		if (hasNextPage) {
 			footerView.showText();
 		} else {
@@ -108,8 +117,6 @@ public class MovieListFragment extends ListFragment implements MovieListCallback
 		if(movieNameList.size() == 0){
 			Toast.makeText(getActivity(), "无结果", Toast.LENGTH_LONG).show();
 		}
-		progressLayout.setVisibility(View.INVISIBLE);
-		getListView().setVisibility(View.VISIBLE);
 	}
 
 	@Override
@@ -120,7 +127,7 @@ public class MovieListFragment extends ListFragment implements MovieListCallback
 
 	public void loadNextPage() {
 		currentPage += 1;
-		GetMovieListAsyncTask task = new GetMovieListAsyncTask(this);
+		MovieListAsyncTask task = new MovieListAsyncTask(this);
 		task.execute(getUrl());
 		if(movieNameList.size() > 0){
 			footerView.showProgressBar();

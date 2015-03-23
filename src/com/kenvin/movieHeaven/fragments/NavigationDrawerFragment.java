@@ -1,7 +1,9 @@
-package com.kenvin.movieHeaven;
+package com.kenvin.movieHeaven.fragments;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.kenvin.movieHeaven.MovieHeavenApplication;
+import com.kenvin.movieHeaven.R;
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;

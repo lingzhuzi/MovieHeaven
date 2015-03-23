@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import com.activeandroid.ActiveAndroid;
+
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -16,10 +19,17 @@ public class MovieHeavenApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		ActiveAndroid.initialize(this);
 		preferencesChanged  = true;
 		loadMenuData();
 	}
 
+	@Override
+    public void onTerminate() {
+        super.onTerminate();
+        ActiveAndroid.dispose();
+    }
+	
 	private void initMenuList() {
 		// 实例化SharedPreferences对象（第一步）
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);

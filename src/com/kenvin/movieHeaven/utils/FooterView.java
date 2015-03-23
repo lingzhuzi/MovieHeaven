@@ -1,5 +1,6 @@
-package com.kenvin.movieHeaven;
+package com.kenvin.movieHeaven.utils;
 
+import com.kenvin.movieHeaven.R;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;

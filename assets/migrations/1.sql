@@ -1,0 +1,1 @@
+create table if not exists starred_movies (ID integer primary key AutoIncrement, name varchar(512), url(512));

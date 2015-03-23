@@ -4,6 +4,10 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.kenvin.movieHeaven.fragments.MovieListFragment;
+import com.kenvin.movieHeaven.fragments.NavigationDrawerFragment;
+
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.FragmentTransaction;
@@ -153,12 +157,16 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
+		Intent intent;
 		switch (id) {
 		case R.id.action_settings:
-			Intent intent = new Intent(this, SettingsActivity.class);
+			intent = new Intent(this, SettingsActivity.class);
 			startActivity(intent);
 			break;
-
+		case R.id.action_my_starred:
+			intent = new Intent(this, StarredMovieActivity.class);
+			startActivity(intent);
+			break;
 		default:
 			break;
 		}

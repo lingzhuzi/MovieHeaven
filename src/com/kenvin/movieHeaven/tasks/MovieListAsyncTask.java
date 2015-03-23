@@ -1,22 +1,26 @@
-package com.kenvin.movieHeaven;
+package com.kenvin.movieHeaven.tasks;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import com.kenvin.movieHeaven.utils.MovieListCallback;
+
 import android.os.AsyncTask;
 
-public class GetMovieListAsyncTask extends
+public class MovieListAsyncTask extends
 		AsyncTask<String, Integer, String> {
 
 	private List<String> movieNameList;
 	private List<String> movieUrlList;
 	private MovieListCallback callback;
 	
-	public GetMovieListAsyncTask(MovieListCallback callBack){
+	public MovieListAsyncTask(MovieListCallback callBack){
 		this.movieNameList = new ArrayList<String>();
 		this.movieUrlList = new ArrayList<String>();
 		this.callback = callBack;
