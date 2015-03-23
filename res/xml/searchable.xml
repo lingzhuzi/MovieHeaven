@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!-- wei：必须包含android:label，一般与app或activity的label相同，但不一样也不影响效果  -->
+<!-- wei：一般建议提供hint，作为输入框的提示  -->
+<searchable xmlns:android="http://schemas.android.com/apk/res/android"
+    android:label="@string/search_result" 
+    android:hint="@string/search_hint" />

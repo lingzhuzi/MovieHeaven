@@ -1,0 +1,133 @@
+package com.kenvin.movieHeaven;
+
+import java.util.ArrayList;
+import java.util.List;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.ListFragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.Toast;
+
+public class MovieListFragment extends ListFragment implements MovieListCallback {
+	/**
+	 * The fragment argument representing the section number for this fragment.
+	 */
+	private static final String SECTION_TITLE = "section_title";
+	private static final String SECTION_URL = "section_url";
+
+	protected FooterView footerView;
+	protected LinearLayout progressLayout;
+	protected int currentPage;
+	private List<String> movieNameList;
+	private List<String> movieUrlList;
+	private ArrayAdapter<String> adapter;
+
+	public MovieListFragment(String title, String url) {
+		Bundle args = new Bundle();
+		args.putString(SECTION_TITLE, title);
+		args.putString(SECTION_URL, url);
+		this.setArguments(args);
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+		progressLayout = (LinearLayout)rootView.findViewById(R.id.progress_layout);
+		return rootView;
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		
+		initListView();
+	}
+
+	protected void initListView() {
+		footerView = new FooterView(getActivity());
+		footerView.setClickable(true);
+		footerView.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				loadNextPage();
+			}
+		});
+		getListView().addFooterView(footerView);
+
+		movieNameList = new ArrayList<String>();
+		movieUrlList = new ArrayList<String>();
+
+		adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, movieNameList);
+		setListAdapter(adapter);
+		
+		currentPage = 0;
+		loadNextPage();
+	}
+
+	protected String getUrl(){
+		String url = getArguments().getString(SECTION_URL);
+		url = url.replaceAll("(list_[0-9]+_)([0-9]+)(.html)", "$1" + currentPage + "$3");
+		return url;
+	}
+
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+
+		if (position >= movieNameList.size()) {
+			loadNextPage();
+		} else {
+			String name = movieNameList.get(position);
+			String url = movieUrlList.get(position);
+
+			Intent intent = new Intent(getActivity(), MovieDetailActivity.class);
+			intent.putExtra("name", name);
+			intent.putExtra("url", url);
+			startActivity(intent);
+
+		}
+	}
+
+	@Override
+	public void succeed(List<String> movieNameList, List<String> movieUrlList, boolean hasNextPage) {
+		this.movieNameList.addAll(movieNameList);
+		this.movieUrlList.addAll(movieUrlList);
+		adapter.notifyDataSetChanged();
+		if (hasNextPage) {
+			footerView.showText();
+		} else {
+			footerView.hide();
+		}
+		if(movieNameList.size() == 0){
+			Toast.makeText(getActivity(), "无结果", Toast.LENGTH_LONG).show();
+		}
+		progressLayout.setVisibility(View.INVISIBLE);
+		getListView().setVisibility(View.VISIBLE);
+	}
+
+	@Override
+	public void failed() {
+		progressLayout.setVisibility(View.INVISIBLE);
+		Toast.makeText(getActivity(), "获取影片失败，请检查您的联网设置", Toast.LENGTH_LONG).show();
+	}
+
+	public void loadNextPage() {
+		currentPage += 1;
+		GetMovieListAsyncTask task = new GetMovieListAsyncTask(this);
+		task.execute(getUrl());
+		if(movieNameList.size() > 0){
+			footerView.showProgressBar();
+		} else {
+			getListView().setVisibility(View.INVISIBLE);
+			footerView.hide();
+		}
+		progressLayout.setVisibility(View.VISIBLE);
+	}
+}

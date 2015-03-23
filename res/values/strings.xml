@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">阳光电影</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_search">搜索</string>
+    <string name="action_settings">设置</string>
+    <string name="action_about">关于</string>
+    
+    <string name="title_activity_detail">影片详情</string>
+    <string name="title_activity_search">搜索</string>
+    <string name="title_activity_settings">设置</string>
+    
+    <string name="load_more">加载更多</string>
+
+    <string name="search_result">搜索结果</string>
+    <string name="search_hint">请输入影片名称</string>
+    
+    <string name="title_setting_menu">左侧菜单</string>
+    <string name="label_choose_menu">左侧菜单</string>
+    <string name="title_choose_menu">请选择左侧菜单</string>
+    <string name="content_choose_menu">点击选择左侧菜单</string>
+</resources>

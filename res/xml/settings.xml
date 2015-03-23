@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/title_setting_menu" >
+        <MultiSelectListPreference
+            android:dialogTitle="@string/title_choose_menu"
+            android:entries="@array/title"
+            android:entryValues="@array/index"
+            android:key="menu_list"
+            android:summary="@string/content_choose_menu"
+            android:title="@string/label_choose_menu" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

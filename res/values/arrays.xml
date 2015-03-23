@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="title">
+		<item>最新影片推荐</item>
+		<item>最新影片</item>
+	    <item>国内电影</item>
+	    <item>欧美电影</item>
+	    <item>日韩电影</item>
+	    <item>华语电视</item>
+	    <item>欧美电视</item>
+	    <item>日韩电视</item>
+	    <item>最新综艺</item>
+	    <item>旧版综艺</item>
+	    <item>动漫资源</item>
+	    <item>游戏下载</item>
+	    <item>手机电影</item>
+    </string-array>
+
+    <string-array name="url">
+		<item>http://www.ygdy8.net/</item>
+		<item>http://www.ygdy8.net/html/gndy/dyzz/list_23_1.html</item>
+	    <item>http://www.ygdy8.net/html/gndy/china/list_4_1.html</item>
+	    <item>http://www.ygdy8.net/html/gndy/oumei/list_7_1.html</item>
+	    <item>http://www.ygdy8.net/html/gndy/rihan/list_6_1.html</item>
+	    <item>http://www.ygdy8.net/html/tv/hytv/list_71_1.html</item>
+	    <item>http://www.ygdy8.net/html/tv/oumeitv/list_9_1.html</item>
+	    <item>http://www.ygdy8.net/html/tv/rihantv/list_8_1.html</item>
+	    <item>http://www.ygdy8.net/html/zongyi2013/list_99_1.html</item>
+	    <item>http://www.ygdy8.net/html/2009zongyi/list_89_1.html</item>
+	    <item>http://www.ygdy8.net/html/dongman/list_16_1.html</item>
+	    <item>http://www.ygdy8.net/html/game/list_19_1.html</item>
+	    <item>http://www.ygdy8.net/html/3gp/3gpmovie/list_30_1.html</item>
+    </string-array>
+
+    <string-array name="index">
+		<item>0</item>
+		<item>1</item>
+	    <item>2</item>
+	    <item>3</item>
+	    <item>4</item>
+	    <item>5</item>
+	    <item>6</item>
+	    <item>7</item>
+	    <item>8</item>
+	    <item>9</item>
+	    <item>10</item>
+	    <item>11</item>
+	    <item>12</item>
+    </string-array>
+
+</resources>
