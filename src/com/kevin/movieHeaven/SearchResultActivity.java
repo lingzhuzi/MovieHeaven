@@ -1,7 +1,7 @@
-package com.kenvin.movieHeaven;
+package com.kevin.movieHeaven;
 
-import com.kenvin.movieHeaven.fragments.SearchResultFragment;
-
+import com.kevin.movieHeaven.R;
+import com.kevin.movieHeaven.fragments.SearchResultFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -15,7 +15,7 @@ public class SearchResultActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_result);
-		
+
 		String keyWord = getKeyWord(getIntent());
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		fragmentManager.beginTransaction().replace(R.id.container, new SearchResultFragment(keyWord)).commit();
@@ -25,7 +25,7 @@ public class SearchResultActivity extends ActionBarActivity {
 		if (intent == null){
 			return null;
 		}
-		
+
 		if (Intent.ACTION_SEARCH.equals(intent.getAction())) { // 如果是通过ACTION_SEARCH来调用，即如果通过搜索调用
 			String keyWord = intent.getStringExtra(SearchManager.QUERY);
 			ActionBar actionBar = getSupportActionBar();
@@ -33,7 +33,7 @@ public class SearchResultActivity extends ActionBarActivity {
 			actionBar.setTitle(keyWord + "-搜索结果");
 			return keyWord; // 获取搜索内容
 		}
-		
+
 		return null;
 	}
 

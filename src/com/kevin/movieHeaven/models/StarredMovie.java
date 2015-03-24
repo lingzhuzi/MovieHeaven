@@ -1,4 +1,4 @@
-package com.kenvin.movieHeaven.models;
+package com.kevin.movieHeaven.models;
 
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
@@ -9,14 +9,14 @@ public class StarredMovie extends Model {
 
 	@Column(name="name")
 	public String name;
-	
+
 	@Column(name="url")
 	public String url;
-	
+
 	public StarredMovie(){
 		super();
 	}
-	
+
 	public StarredMovie(String name, String url){
 		super();
 		this.name = name;

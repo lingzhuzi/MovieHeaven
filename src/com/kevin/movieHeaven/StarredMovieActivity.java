@@ -1,6 +1,7 @@
-package com.kenvin.movieHeaven;
+package com.kevin.movieHeaven;
 
-import com.kenvin.movieHeaven.fragments.StarredMovieListFragment;
+import com.kevin.movieHeaven.R;
+import com.kevin.movieHeaven.fragments.StarredMovieListFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,7 +10,7 @@ import android.os.Bundle;
 public class StarredMovieActivity extends ActionBarActivity {
 
 	private StarredMovieListFragment fragment;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -19,7 +20,7 @@ public class StarredMovieActivity extends ActionBarActivity {
 			getSupportFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
 		}
 	}
-	
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

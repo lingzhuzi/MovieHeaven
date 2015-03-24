@@ -1,8 +1,7 @@
-package com.kenvin.movieHeaven.fragments;
+package com.kevin.movieHeaven.fragments;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -11,7 +10,7 @@ public class SearchResultFragment extends MovieListFragment {
 	 * The fragment argument representing the section number for this fragment.
 	 */
 	private static final String SECTION_KEY = "section_key";
-	
+
 
 	public SearchResultFragment(String keyWord) {
 		super("", "");
@@ -35,6 +34,6 @@ public class SearchResultFragment extends MovieListFragment {
 		}
 		return null;
 	}
-	
-	
+
+
 }

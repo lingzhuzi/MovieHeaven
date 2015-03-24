@@ -1,14 +1,12 @@
-package com.kenvin.movieHeaven.fragments;
+package com.kevin.movieHeaven.fragments;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.kenvin.movieHeaven.MovieDetailActivity;
-import com.kenvin.movieHeaven.R;
-import com.kenvin.movieHeaven.tasks.MovieListAsyncTask;
-import com.kenvin.movieHeaven.utils.FooterView;
-import com.kenvin.movieHeaven.utils.MovieListCallback;
-
+import com.kevin.movieHeaven.R;
+import com.kevin.movieHeaven.tasks.MovieListAsyncTask;
+import com.kevin.movieHeaven.utils.FooterView;
+import com.kevin.movieHeaven.utils.MovieListCallback;
+import com.kevin.movieHeaven.MovieDetailActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -52,7 +50,7 @@ public class MovieListFragment extends ListFragment implements MovieListCallback
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		
+
 		initListView();
 	}
 
@@ -60,7 +58,7 @@ public class MovieListFragment extends ListFragment implements MovieListCallback
 		footerView = new FooterView(getActivity());
 		footerView.setClickable(true);
 		footerView.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				loadNextPage();
@@ -73,10 +71,10 @@ public class MovieListFragment extends ListFragment implements MovieListCallback
 
 		adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, movieNameList);
 		setListAdapter(adapter);
-		
+
 		loadMovieList();
 	}
-	
+
 	protected String getUrl(){
 		String url = getArguments().getString(SECTION_URL);
 		url = url.replaceAll("(list_[0-9]+_)([0-9]+)(.html)", "$1" + currentPage + "$3");
@@ -122,7 +120,7 @@ public class MovieListFragment extends ListFragment implements MovieListCallback
 		progressLayout.setVisibility(View.INVISIBLE);
 		Toast.makeText(getActivity(), "获取影片失败，请检查您的联网设置", Toast.LENGTH_LONG).show();
 	}
-	
+
 	public void refresh(){
 		movieNameList.clear();
 		movieUrlList.clear();
@@ -142,7 +140,7 @@ public class MovieListFragment extends ListFragment implements MovieListCallback
 		}
 		progressLayout.setVisibility(View.VISIBLE);
 	}
-	
+
 	public void loadNextPage() {
 		currentPage += 1;
 		loadMovieList();

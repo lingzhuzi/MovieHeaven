@@ -1,5 +1,6 @@
-package com.kenvin.movieHeaven;
+package com.kevin.movieHeaven;
 
+import com.kevin.movieHeaven.R;
 import android.support.v7.app.ActionBarActivity;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -14,10 +15,10 @@ public class AboutActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_about);
-		
+
 		TextView mAuthor = (TextView)findViewById(R.id.author);
 		mAuthor.setText("作者：杨辉");
-		
+
 		// 获取packagemanager的实例
         PackageManager packageManager = getPackageManager();
         // getPackageName()是你当前类的包名，0代表是获取版本信息

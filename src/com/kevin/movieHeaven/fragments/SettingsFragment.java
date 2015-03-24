@@ -1,9 +1,8 @@
-package com.kenvin.movieHeaven.fragments;
+package com.kevin.movieHeaven.fragments;
 
 import java.util.Set;
-
-import com.kenvin.movieHeaven.MovieHeavenApplication;
-import com.kenvin.movieHeaven.R;
+import com.kevin.movieHeaven.R;
+import com.kevin.movieHeaven.MovieHeavenApplication;
 import android.os.Bundle;
 import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
@@ -14,14 +13,14 @@ import android.widget.Toast;
 public class SettingsFragment extends PreferenceFragment implements OnPreferenceChangeListener {
 
 	private MultiSelectListPreference menuPref;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.settings);
-		
+
 		menuPref = (MultiSelectListPreference)findPreference("menu_list");
-		
+
 		menuPref.setOnPreferenceChangeListener(this);
 	}
 

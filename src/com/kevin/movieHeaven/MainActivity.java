@@ -1,13 +1,12 @@
-package com.kenvin.movieHeaven;
+package com.kevin.movieHeaven;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.kenvin.movieHeaven.fragments.MovieListFragment;
-import com.kenvin.movieHeaven.fragments.NavigationDrawerFragment;
-
+import com.kevin.movieHeaven.R;
+import com.kevin.movieHeaven.fragments.MovieListFragment;
+import com.kevin.movieHeaven.fragments.NavigationDrawerFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.FragmentTransaction;
@@ -43,7 +42,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		setContentView(R.layout.activity_main);
 
 		mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -51,7 +50,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
-		
+
 		forceShowOverflowMenu();
 	}
 
@@ -66,7 +65,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 		if(currentFragment != null){
 			transaction.hide(currentFragment);
 		}
-		
+
 		if(fragment.isAdded()){
 			transaction.show(fragment);
 		} else {
@@ -80,16 +79,16 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 		MovieHeavenApplication app = (MovieHeavenApplication)getApplication();
 		List<String> titles = app.getMovieNameList();
 		List<String> urls = app.getMovieUrlList();
-		
+
 		String title = titles.get(position);
 		String url = urls.get(position);
-		
+
 		mTitle = title;
-		
+
 		if(fragmentMap == null){
 			fragmentMap = new HashMap<String, MovieListFragment>();
 		}
-		
+
 		MovieListFragment fragment = fragmentMap.get(title);
 		if(fragment == null){
 			fragment = new MovieListFragment(title, url);
@@ -117,7 +116,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 	        e.printStackTrace();
 	    }
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		if (!mNavigationDrawerFragment.isDrawerOpen()) {
@@ -145,7 +144,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 			}
 			// 将searchable activity的搜索信息与search view关联
 			searchView.setSearchableInfo(info);
-			
+
 			return true;
 		}
 		return super.onCreateOptionsMenu(menu);

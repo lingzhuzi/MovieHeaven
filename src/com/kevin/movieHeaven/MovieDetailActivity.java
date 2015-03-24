@@ -1,9 +1,10 @@
-package com.kenvin.movieHeaven;
+package com.kevin.movieHeaven;
 
 import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
-import com.kenvin.movieHeaven.models.StarredMovie;
-import com.kenvin.movieHeaven.tasks.MovieDetailAsyncTask;
+import com.kevin.movieHeaven.R;
+import com.kevin.movieHeaven.models.StarredMovie;
+import com.kevin.movieHeaven.tasks.MovieDetailAsyncTask;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -34,7 +35,7 @@ public class MovieDetailActivity extends ActionBarActivity {
 		MovieDetailAsyncTask task = new MovieDetailAsyncTask(detailView);
 		task.execute(url);
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.detail, menu);
@@ -43,7 +44,7 @@ public class MovieDetailActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
-		
+
 		MenuItem item = menu.findItem(R.id.action_star);
 		if(item != null){
 			if(hasStarred(title, url)){
@@ -84,15 +85,15 @@ public class MovieDetailActivity extends ActionBarActivity {
 			Toast.makeText(this, "收藏成功", Toast.LENGTH_LONG).show();
 		}
 	}
-	
+
 	private void shareThisMovie(){
 		Intent intent = new Intent(Intent.ACTION_SEND);
-		intent.setType("text/plain");  
-		intent.putExtra(Intent.EXTRA_SUBJECT, "分享");  
-		intent.putExtra(Intent.EXTRA_TEXT, "【阳光电影】" + title + "：" + url + "，分享自阳光电影安卓客户端[https://raw.githubusercontent.com/lingzhuzi/MovieHeaven/master/release/MovieHeaven.apk]");  
+		intent.setType("text/plain");
+		intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
+		intent.putExtra(Intent.EXTRA_TEXT, "【阳光电影】" + title + "：" + url + "，分享自阳光电影安卓客户端[https://raw.githubusercontent.com/lingzhuzi/MovieHeaven/master/release/MovieHeaven.apk]");
 		startActivity(intent);
 	}
-	
+
 	private boolean hasStarred(String title, String url){
 		int size = new Select().from(StarredMovie.class).where("name = ? and url = ?", title, url).execute().size();
 		return size > 0;

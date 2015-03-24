@@ -1,4 +1,4 @@
-package com.kenvin.movieHeaven.fragments;
+package com.kevin.movieHeaven.fragments;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +13,11 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
-import com.kenvin.movieHeaven.MovieDetailActivity;
-import com.kenvin.movieHeaven.R;
-import com.kenvin.movieHeaven.tasks.StarredMovieListAsyncTask;
-import com.kenvin.movieHeaven.utils.FooterView;
-import com.kenvin.movieHeaven.utils.MovieListCallback;
+import com.kevin.movieHeaven.R;
+import com.kevin.movieHeaven.tasks.StarredMovieListAsyncTask;
+import com.kevin.movieHeaven.utils.FooterView;
+import com.kevin.movieHeaven.utils.MovieListCallback;
+import com.kevin.movieHeaven.MovieDetailActivity;
 
 public class StarredMovieListFragment extends ListFragment implements MovieListCallback {
 	protected FooterView footerView;
