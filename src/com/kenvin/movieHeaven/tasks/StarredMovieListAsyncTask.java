@@ -23,7 +23,7 @@ public class StarredMovieListAsyncTask extends AsyncTask<Integer, Integer, Strin
 	@Override
 	protected String doInBackground(Integer... params) {
 		int page = params[0];
-		List<StarredMovie> movieList = new Select().from(StarredMovie.class).limit(30 + "").offset(30*(page-1) + "").orderBy("ID").execute();
+		List<StarredMovie> movieList = new Select().from(StarredMovie.class).limit(30 + "").offset(30*(page-1) + "").orderBy("ID desc").execute();
 		movieNameList = new ArrayList<String>();
 		movieUrlList = new ArrayList<String>();
 		for(StarredMovie movie : movieList){

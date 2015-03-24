@@ -127,6 +127,7 @@ public class MovieListFragment extends ListFragment implements MovieListCallback
 		movieNameList.clear();
 		movieUrlList.clear();
 		adapter.notifyDataSetChanged();
+		currentPage = 1;
 		loadMovieList();
 	}
 

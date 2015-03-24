@@ -2,7 +2,6 @@ package com.kenvin.movieHeaven.fragments;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -14,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.kenvin.movieHeaven.MovieDetailActivity;
 import com.kenvin.movieHeaven.R;
 import com.kenvin.movieHeaven.tasks.StarredMovieListAsyncTask;
@@ -61,8 +59,8 @@ public class StarredMovieListFragment extends ListFragment implements MovieListC
 		adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, movieNameList);
 		setListAdapter(adapter);
 
-		currentPage = 0;
-		loadNextPage();
+		currentPage = 1;
+		loadData();
 	}
 
 	@Override
@@ -82,8 +80,15 @@ public class StarredMovieListFragment extends ListFragment implements MovieListC
 		}
 	}
 
-	public void loadNextPage() {
-		currentPage += 1;
+	public void refresh() {
+		movieNameList.clear();
+		movieUrlList.clear();
+		adapter.notifyDataSetChanged();
+		currentPage = 1;
+		loadData();
+	}
+
+	private void loadData() {
 		StarredMovieListAsyncTask task = new StarredMovieListAsyncTask(this);
 		task.execute(currentPage);
 		if (movieNameList.size() > 0) {
@@ -93,6 +98,11 @@ public class StarredMovieListFragment extends ListFragment implements MovieListC
 			footerView.hide();
 		}
 		progressLayout.setVisibility(View.VISIBLE);
+	}
+
+	public void loadNextPage() {
+		currentPage += 1;
+		loadData();
 	}
 
 	@Override
