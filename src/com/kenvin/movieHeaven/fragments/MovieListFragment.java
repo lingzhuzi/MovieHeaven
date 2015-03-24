@@ -30,7 +30,7 @@ public class MovieListFragment extends ListFragment implements MovieListCallback
 
 	protected FooterView footerView;
 	protected LinearLayout progressLayout;
-	protected int currentPage;
+	protected int currentPage = 1;
 	private List<String> movieNameList;
 	private List<String> movieUrlList;
 	private ArrayAdapter<String> adapter;
@@ -74,10 +74,9 @@ public class MovieListFragment extends ListFragment implements MovieListCallback
 		adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, movieNameList);
 		setListAdapter(adapter);
 		
-		currentPage = 0;
-		loadNextPage();
+		loadMovieList();
 	}
-
+	
 	protected String getUrl(){
 		String url = getArguments().getString(SECTION_URL);
 		url = url.replaceAll("(list_[0-9]+_)([0-9]+)(.html)", "$1" + currentPage + "$3");
@@ -98,7 +97,6 @@ public class MovieListFragment extends ListFragment implements MovieListCallback
 			intent.putExtra("name", name);
 			intent.putExtra("url", url);
 			startActivity(intent);
-
 		}
 	}
 
@@ -124,9 +122,15 @@ public class MovieListFragment extends ListFragment implements MovieListCallback
 		progressLayout.setVisibility(View.INVISIBLE);
 		Toast.makeText(getActivity(), "获取影片失败，请检查您的联网设置", Toast.LENGTH_LONG).show();
 	}
+	
+	public void refresh(){
+		movieNameList.clear();
+		movieUrlList.clear();
+		adapter.notifyDataSetChanged();
+		loadMovieList();
+	}
 
-	public void loadNextPage() {
-		currentPage += 1;
+	public void loadMovieList(){
 		MovieListAsyncTask task = new MovieListAsyncTask(this);
 		task.execute(getUrl());
 		if(movieNameList.size() > 0){
@@ -136,5 +140,10 @@ public class MovieListFragment extends ListFragment implements MovieListCallback
 			footerView.hide();
 		}
 		progressLayout.setVisibility(View.VISIBLE);
+	}
+	
+	public void loadNextPage() {
+		currentPage += 1;
+		loadMovieList();
 	}
 }

@@ -171,6 +171,9 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 			intent = new Intent(this, AboutActivity.class);
 			startActivity(intent);
 			break;
+		case R.id.action_refresh:
+			currentFragment.refresh();
+			break;
 		default:
 			break;
 		}

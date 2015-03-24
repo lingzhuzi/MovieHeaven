@@ -211,17 +211,14 @@ public class NavigationDrawerFragment extends Fragment {
 	}
 
 	@Override
-	public void onResume(){
+	public void onResume() {
 		super.onResume();
-		int size = titles.size();
-		for(int i=0;i<size;i++){
-			titles.remove(0);
-		}
-		MovieHeavenApplication app = (MovieHeavenApplication)getActivity().getApplication();
+		titles.clear();
+		MovieHeavenApplication app = (MovieHeavenApplication) getActivity().getApplication();
 		titles.addAll(app.getMovieNameList());
 		adapter.notifyDataSetChanged();
 	}
-	
+
 	@Override
 	public void onDetach() {
 		super.onDetach();

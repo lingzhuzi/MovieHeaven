@@ -24,13 +24,17 @@ public class MovieDetailActivity extends ActionBarActivity {
 		Intent intent = getIntent();
 		title = intent.getStringExtra("name");
 		url = intent.getStringExtra("url");
-		setTitle(title);
-		WebView detailView = (WebView) findViewById(R.id.detail_view);
 
+		setTitle(title);
+		loadMovieDetails();
+	}
+
+	private void loadMovieDetails(){
+		WebView detailView = (WebView) findViewById(R.id.detail_view);
 		MovieDetailAsyncTask task = new MovieDetailAsyncTask(detailView);
 		task.execute(url);
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.detail, menu);
@@ -60,6 +64,9 @@ public class MovieDetailActivity extends ActionBarActivity {
 			break;
 		case R.id.action_share:
 			shareThisMovie();
+			break;
+		case R.id.action_refresh:
+			loadMovieDetails();
 			break;
 		default:
 			break;

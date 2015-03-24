@@ -8,6 +8,10 @@
         android:title="@string/action_search"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="withText|ifRoom"/>
+      <item
+        android:id="@+id/action_refresh"
+        android:title="@string/action_refresh"
+        app:showAsAction="withText"/>
     <item
         android:id="@+id/action_settings"
         android:title="@string/action_settings"

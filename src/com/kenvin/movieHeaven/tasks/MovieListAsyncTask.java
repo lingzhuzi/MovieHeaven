@@ -3,14 +3,11 @@ package com.kenvin.movieHeaven.tasks;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 import com.kenvin.movieHeaven.utils.MovieListCallback;
-
 import android.os.AsyncTask;
 
 public class MovieListAsyncTask extends
@@ -35,6 +32,9 @@ public class MovieListAsyncTask extends
 			}
 			Document doc = Jsoup.connect(url).get();
             Element content = doc.select(".co_content8").first();
+            if(content == null){
+            	return "n";
+            }
             Elements pages = content.select("a:contains(下一页)");
             
             String hasPages = pages != null && pages.size() > 0 ? "y" : "n";
@@ -48,12 +48,12 @@ public class MovieListAsyncTask extends
             }
             
             for(Element link : links){
-            	String href = "http://www.ygdy8.net" + link.attr("href");
+            	String href = "http://www.ygdy8.com" + link.attr("href");
             	String text = link.text();
             
             	if(href != null && !href.endsWith("index.html")){
                 	movieNameList.add(text);
-                	movieUrlList.add(href);	
+                	movieUrlList.add(href);
             	}
             }
 			return hasPages;
