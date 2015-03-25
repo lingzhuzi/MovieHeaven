@@ -2,23 +2,34 @@ package com.kevin.movieHeaven;
 
 import com.kevin.movieHeaven.R;
 import com.kevin.movieHeaven.fragments.SearchResultFragment;
+
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 
 public class SearchResultActivity extends ActionBarActivity {
 
+	private SearchResultFragment fragment;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_result);
-
-		String keyWord = getKeyWord(getIntent());
+		
 		FragmentManager fragmentManager = getSupportFragmentManager();
-		fragmentManager.beginTransaction().replace(R.id.container, new SearchResultFragment(keyWord)).commit();
+		if(savedInstanceState == null){
+			String keyWord = getKeyWord(getIntent());
+			
+			fragment = new SearchResultFragment(keyWord);
+			fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+		} else {
+			fragment = (SearchResultFragment)fragmentManager.findFragmentById(R.id.container);
+		}
 	}
 
 	private String getKeyWord(Intent intent) {
@@ -37,4 +48,23 @@ public class SearchResultActivity extends ActionBarActivity {
 		return null;
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.search_result, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		switch (id) {
+		case R.id.action_refresh:
+			fragment.refresh();
+			break;
+		default:
+			break;
+		}
+
+		return super.onOptionsItemSelected(item);
+	}
 }

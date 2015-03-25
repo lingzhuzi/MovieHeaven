@@ -3,12 +3,16 @@ package com.kevin.movieHeaven.tasks;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
 import com.kevin.movieHeaven.utils.MovieListCallback;
+
 import android.os.AsyncTask;
+import android.util.Log;
 
 public class MovieListAsyncTask extends
 		AsyncTask<String, Integer, String> {
@@ -30,6 +34,7 @@ public class MovieListAsyncTask extends
 			if(url == null){
 				return null;
 			}
+			Log.d("net_connection", url);
 			Document doc = Jsoup.connect(url).get();
             Element content = doc.select(".co_content8").first();
             if(content == null){

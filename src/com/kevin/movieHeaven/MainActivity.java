@@ -57,16 +57,17 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
 		MovieListFragment fragment = getFragment(position);
-		if(fragment == currentFragment){
+
+		if (fragment == currentFragment) {
 			return;
 		}
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 		transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
-		if(currentFragment != null){
+		if (currentFragment != null) {
 			transaction.hide(currentFragment);
-		}
+		} 
 
-		if(fragment.isAdded()){
+		if (fragment.isAdded()) {
 			transaction.show(fragment);
 		} else {
 			transaction.add(R.id.container, fragment);
@@ -75,8 +76,13 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 		currentFragment = fragment;
 	}
 
+	@Override  
+    protected void onSaveInstanceState(Bundle outState) {  
+		// save noting
+	}
+	
 	private MovieListFragment getFragment(int position) {
-		MovieHeavenApplication app = (MovieHeavenApplication)getApplication();
+		MovieHeavenApplication app = (MovieHeavenApplication) getApplication();
 		List<String> titles = app.getMovieNameList();
 		List<String> urls = app.getMovieUrlList();
 
@@ -85,12 +91,12 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
 		mTitle = title;
 
-		if(fragmentMap == null){
+		if (fragmentMap == null) {
 			fragmentMap = new HashMap<String, MovieListFragment>();
 		}
 
 		MovieListFragment fragment = fragmentMap.get(title);
-		if(fragment == null){
+		if (fragment == null) {
 			fragment = new MovieListFragment(title, url);
 			fragmentMap.put(title, fragment);
 		}
@@ -103,18 +109,18 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 		actionBar.setTitle(mTitle);
 	}
 
-	//force to show overflow menu in actionbar
+	// force to show overflow menu in actionbar
 	private void forceShowOverflowMenu() {
-	     try {
-	        ViewConfiguration config = ViewConfiguration.get(this);
-	        Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
-	        if(menuKeyField != null) {
-	            menuKeyField.setAccessible(true);
-	            menuKeyField.setBoolean(config, false);
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+		try {
+			ViewConfiguration config = ViewConfiguration.get(this);
+			Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+			if (menuKeyField != null) {
+				menuKeyField.setAccessible(true);
+				menuKeyField.setBoolean(config, false);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -149,7 +155,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 		}
 		return super.onCreateOptionsMenu(menu);
 	}
-
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will

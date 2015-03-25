@@ -11,7 +11,10 @@ public class SearchResultFragment extends MovieListFragment {
 	 */
 	private static final String SECTION_KEY = "section_key";
 
-
+	public SearchResultFragment(){
+		
+	}
+	
 	public SearchResultFragment(String keyWord) {
 		super("", "");
 		Bundle args = new Bundle();

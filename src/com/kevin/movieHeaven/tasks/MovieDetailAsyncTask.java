@@ -29,7 +29,7 @@ public class MovieDetailAsyncTask extends AsyncTask<String, Integer, String> {
             	content.select(">span>font").remove();
             	content.select(">span>center").remove();
             	content.select(">span>hr").remove();
-            	content.select("img").attr("style", "width:100%;");
+            	content.select("img").attr("style", "width:100%;height:inherit;");
             	return content.outerHtml();
             }
 

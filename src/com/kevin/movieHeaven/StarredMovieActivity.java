@@ -2,6 +2,8 @@ package com.kevin.movieHeaven;
 
 import com.kevin.movieHeaven.R;
 import com.kevin.movieHeaven.fragments.StarredMovieListFragment;
+
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,9 +17,13 @@ public class StarredMovieActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_starred_movie);
+		
+		FragmentManager fragmentManager = getSupportFragmentManager();
 		if (savedInstanceState == null) {
 			fragment = new StarredMovieListFragment();
-			getSupportFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
+			fragmentManager.beginTransaction().add(R.id.container, fragment).commit();
+		} else {
+			fragment = (StarredMovieListFragment)fragmentManager.findFragmentById(R.id.container);
 		}
 	}
 

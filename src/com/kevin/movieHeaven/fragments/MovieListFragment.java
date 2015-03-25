@@ -26,6 +26,7 @@ public class MovieListFragment extends ListFragment implements MovieListCallback
 	private static final String SECTION_TITLE = "section_title";
 	private static final String SECTION_URL = "section_url";
 
+	protected ListView listView;
 	protected FooterView footerView;
 	protected LinearLayout progressLayout;
 	protected int currentPage = 1;
@@ -33,6 +34,10 @@ public class MovieListFragment extends ListFragment implements MovieListCallback
 	private List<String> movieUrlList;
 	private ArrayAdapter<String> adapter;
 
+	public MovieListFragment() {
+		
+	}
+	
 	public MovieListFragment(String title, String url) {
 		Bundle args = new Bundle();
 		args.putString(SECTION_TITLE, title);
@@ -50,7 +55,6 @@ public class MovieListFragment extends ListFragment implements MovieListCallback
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-
 		initListView();
 	}
 
@@ -64,7 +68,8 @@ public class MovieListFragment extends ListFragment implements MovieListCallback
 				loadNextPage();
 			}
 		});
-		getListView().addFooterView(footerView);
+		listView = getListView();
+		listView.addFooterView(footerView);
 
 		movieNameList = new ArrayList<String>();
 		movieUrlList = new ArrayList<String>();
@@ -104,7 +109,7 @@ public class MovieListFragment extends ListFragment implements MovieListCallback
 		this.movieUrlList.addAll(movieUrlList);
 		adapter.notifyDataSetChanged();
 		progressLayout.setVisibility(View.INVISIBLE);
-		getListView().setVisibility(View.VISIBLE);
+		listView.setVisibility(View.VISIBLE);
 		if (hasNextPage) {
 			footerView.showText();
 		} else {
