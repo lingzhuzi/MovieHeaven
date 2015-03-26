@@ -15,87 +15,87 @@ import android.widget.Toast;
 
 public class MovieDetailActivity extends ActionBarActivity {
 
-	private String title;
-	private String url;
+    private String title;
+    private String url;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_movie_detail);
-		Intent intent = getIntent();
-		title = intent.getStringExtra("name");
-		url = intent.getStringExtra("url");
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_movie_detail);
+        Intent intent = getIntent();
+        title = intent.getStringExtra("name");
+        url = intent.getStringExtra("url");
 
-		setTitle(title);
-		loadMovieDetails();
-	}
+        setTitle(title);
+        loadMovieDetails();
+    }
 
-	private void loadMovieDetails(){
-		WebView detailView = (WebView) findViewById(R.id.detail_view);
-		MovieDetailAsyncTask task = new MovieDetailAsyncTask(detailView);
-		task.execute(url);
-	}
+    private void loadMovieDetails() {
+        WebView detailView = (WebView) findViewById(R.id.detail_view);
+        MovieDetailAsyncTask task = new MovieDetailAsyncTask(detailView);
+        task.execute(url);
+    }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.detail, menu);
-		return true;
-	}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.detail, menu);
+        return true;
+    }
 
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
 
-		MenuItem item = menu.findItem(R.id.action_star);
-		if(item != null){
-			if(hasStarred(title, url)){
-				item.setTitle("取消收藏");
-			} else {
-				item.setTitle("收藏");
-			}
-		}
-		return super.onPrepareOptionsMenu(menu);
-	}
+        MenuItem item = menu.findItem(R.id.action_star);
+        if (item != null) {
+            if (hasStarred(title, url)) {
+                item.setTitle("取消收藏");
+            } else {
+                item.setTitle("收藏");
+            }
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		int id = item.getItemId();
-		switch (id) {
-		case R.id.action_star:
-			starThisMovie();
-			break;
-		case R.id.action_share:
-			shareThisMovie();
-			break;
-		case R.id.action_refresh:
-			loadMovieDetails();
-			break;
-		default:
-			break;
-		}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+        case R.id.action_star:
+            starThisMovie();
+            break;
+        case R.id.action_share:
+            shareThisMovie();
+            break;
+        case R.id.action_refresh:
+            loadMovieDetails();
+            break;
+        default:
+            break;
+        }
 
-		return super.onOptionsItemSelected(item);
-	}
+        return super.onOptionsItemSelected(item);
+    }
 
-	private void starThisMovie() {
-		if (hasStarred(title, url)) {
-			new Delete().from(StarredMovie.class).where("name = ? and url = ?", title, url).execute();
-			Toast.makeText(this, "取消收藏成功", Toast.LENGTH_SHORT).show();
-		} else {
-			new StarredMovie(title, url).save();
-			Toast.makeText(this, "收藏成功", Toast.LENGTH_LONG).show();
-		}
-	}
+    private void starThisMovie() {
+        if (hasStarred(title, url)) {
+            new Delete().from(StarredMovie.class).where("name = ? and url = ?", title, url).execute();
+            Toast.makeText(this, "取消收藏成功", Toast.LENGTH_SHORT).show();
+        } else {
+            new StarredMovie(title, url).save();
+            Toast.makeText(this, "收藏成功", Toast.LENGTH_LONG).show();
+        }
+    }
 
-	private void shareThisMovie(){
-		Intent intent = new Intent(Intent.ACTION_SEND);
-		intent.setType("text/plain");
-		intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
-		intent.putExtra(Intent.EXTRA_TEXT, "【阳光电影】" + title + "：" + url + "，分享自阳光电影安卓客户端[https://raw.githubusercontent.com/lingzhuzi/MovieHeaven/master/release/MovieHeaven.apk]");
-		startActivity(intent);
-	}
+    private void shareThisMovie() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
+        intent.putExtra(Intent.EXTRA_TEXT, "【阳光电影】" + title + "：" + url + "，分享自阳光电影安卓客户端[https://raw.githubusercontent.com/lingzhuzi/MovieHeaven/master/release/MovieHeaven.apk]");
+        startActivity(intent);
+    }
 
-	private boolean hasStarred(String title, String url){
-		int size = new Select().from(StarredMovie.class).where("name = ? and url = ?", title, url).execute().size();
-		return size > 0;
-	}
+    private boolean hasStarred(String title, String url) {
+        int size = new Select().from(StarredMovie.class).where("name = ? and url = ?", title, url).execute().size();
+        return size > 0;
+    }
 }

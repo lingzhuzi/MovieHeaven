@@ -14,57 +14,57 @@ import android.os.Bundle;
 
 public class SearchResultActivity extends ActionBarActivity {
 
-	private SearchResultFragment fragment;
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_search_result);
-		
-		FragmentManager fragmentManager = getSupportFragmentManager();
-		if(savedInstanceState == null){
-			String keyWord = getKeyWord(getIntent());
-			
-			fragment = new SearchResultFragment(keyWord);
-			fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
-		} else {
-			fragment = (SearchResultFragment)fragmentManager.findFragmentById(R.id.container);
-		}
-	}
+    private SearchResultFragment fragment;
 
-	private String getKeyWord(Intent intent) {
-		if (intent == null){
-			return null;
-		}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_search_result);
 
-		if (Intent.ACTION_SEARCH.equals(intent.getAction())) { // 如果是通过ACTION_SEARCH来调用，即如果通过搜索调用
-			String keyWord = intent.getStringExtra(SearchManager.QUERY);
-			ActionBar actionBar = getSupportActionBar();
-			actionBar.setDisplayShowTitleEnabled(true);
-			actionBar.setTitle(keyWord + "-搜索结果");
-			return keyWord; // 获取搜索内容
-		}
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        if (savedInstanceState == null) {
+            String keyWord = getKeyWord(getIntent());
 
-		return null;
-	}
+            fragment = new SearchResultFragment(keyWord);
+            fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+        } else {
+            fragment = (SearchResultFragment) fragmentManager.findFragmentById(R.id.container);
+        }
+    }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.search_result, menu);
-		return true;
-	}
+    private String getKeyWord(Intent intent) {
+        if (intent == null) {
+            return null;
+        }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		int id = item.getItemId();
-		switch (id) {
-		case R.id.action_refresh:
-			fragment.refresh();
-			break;
-		default:
-			break;
-		}
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) { // 如果是通过ACTION_SEARCH来调用，即如果通过搜索调用
+            String keyWord = intent.getStringExtra(SearchManager.QUERY);
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.setTitle(keyWord + "-搜索结果");
+            return keyWord; // 获取搜索内容
+        }
 
-		return super.onOptionsItemSelected(item);
-	}
+        return null;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_result, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+        case R.id.action_refresh:
+            fragment.refresh();
+            break;
+        default:
+            break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

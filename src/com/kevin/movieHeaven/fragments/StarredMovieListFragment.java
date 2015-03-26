@@ -20,109 +20,108 @@ import com.kevin.movieHeaven.utils.MovieListCallback;
 import com.kevin.movieHeaven.MovieDetailActivity;
 
 public class StarredMovieListFragment extends ListFragment implements MovieListCallback {
-	protected FooterView footerView;
-	protected LinearLayout progressLayout;
-	protected int currentPage;
-	private List<String> movieNameList;
-	private List<String> movieUrlList;
-	private ArrayAdapter<String> adapter;
+    protected FooterView footerView;
+    protected LinearLayout progressLayout;
+    protected int currentPage;
+    private List<String> movieNameList;
+    private List<String> movieUrlList;
+    private ArrayAdapter<String> adapter;
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-		progressLayout = (LinearLayout) rootView.findViewById(R.id.progress_layout);
-		return rootView;
-	}
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        progressLayout = (LinearLayout) rootView.findViewById(R.id.progress_layout);
+        return rootView;
+    }
 
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
-		initListView();
-	}
+        initListView();
+    }
 
-	protected void initListView() {
-		footerView = new FooterView(getActivity());
-		footerView.setClickable(true);
-		footerView.setOnClickListener(new OnClickListener() {
+    protected void initListView() {
+        footerView = new FooterView(getActivity());
+        footerView.setClickable(true);
+        footerView.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				loadNextPage();
-			}
-		});
-		getListView().addFooterView(footerView);
+            @Override
+            public void onClick(View v) {
+                loadNextPage();
+            }
+        });
+        getListView().addFooterView(footerView);
 
-		movieNameList = new ArrayList<String>();
-		movieUrlList = new ArrayList<String>();
+        movieNameList = new ArrayList<String>();
+        movieUrlList = new ArrayList<String>();
 
-		adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, movieNameList);
-		setListAdapter(adapter);
+        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, movieNameList);
+        setListAdapter(adapter);
 
-		currentPage = 1;
-		loadData();
-	}
+        currentPage = 1;
+        loadData();
+    }
 
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-		super.onListItemClick(l, v, position, id);
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
 
-		if (position >= movieNameList.size()) {
-			loadNextPage();
-		} else {
-			String name = movieNameList.get(position);
-			String url = movieUrlList.get(position);
+        if (position >= movieNameList.size()) {
+            loadNextPage();
+        } else {
+            String name = movieNameList.get(position);
+            String url = movieUrlList.get(position);
 
-			Intent intent = new Intent(getActivity(), MovieDetailActivity.class);
-			intent.putExtra("name", name);
-			intent.putExtra("url", url);
-			startActivity(intent);
-		}
-	}
+            Intent intent = new Intent(getActivity(), MovieDetailActivity.class);
+            intent.putExtra("name", name);
+            intent.putExtra("url", url);
+            startActivity(intent);
+        }
+    }
 
-	public void refresh() {
-		movieNameList.clear();
-		movieUrlList.clear();
-		adapter.notifyDataSetChanged();
-		currentPage = 1;
-		loadData();
-	}
+    public void refresh() {
+        movieNameList.clear();
+        movieUrlList.clear();
+        adapter.notifyDataSetChanged();
+        currentPage = 1;
+        loadData();
+    }
 
-	private void loadData() {
-		StarredMovieListAsyncTask task = new StarredMovieListAsyncTask(this);
-		task.execute(currentPage);
-		if (movieNameList.size() > 0) {
-			footerView.showProgressBar();
-		} else {
-			getListView().setVisibility(View.INVISIBLE);
-			footerView.hide();
-		}
-		progressLayout.setVisibility(View.VISIBLE);
-	}
+    private void loadData() {
+        StarredMovieListAsyncTask task = new StarredMovieListAsyncTask(this);
+        task.execute(currentPage);
+        if (movieNameList.size() > 0) {
+            footerView.showProgressBar();
+        } else {
+            getListView().setVisibility(View.INVISIBLE);
+            footerView.hide();
+        }
+        progressLayout.setVisibility(View.VISIBLE);
+    }
 
-	public void loadNextPage() {
-		currentPage += 1;
-		loadData();
-	}
+    public void loadNextPage() {
+        currentPage += 1;
+        loadData();
+    }
 
-	@Override
-	public void succeed(List<String> movieNameList, List<String> movieUrlList, boolean hasNextPage) {
-		this.movieNameList.addAll(movieNameList);
-		this.movieUrlList.addAll(movieUrlList);
-		adapter.notifyDataSetChanged();
-		progressLayout.setVisibility(View.INVISIBLE);
-		getListView().setVisibility(View.VISIBLE);
-		if (hasNextPage) {
-			footerView.showText();
-		} else {
-			footerView.hide();
-		}
-		if (movieNameList.size() == 0) {
-			Toast.makeText(getActivity(), "无结果", Toast.LENGTH_LONG).show();
-		}
-	}
+    @Override
+    public void succeed(List<String> movieNameList, List<String> movieUrlList, boolean hasNextPage) {
+        this.movieNameList.addAll(movieNameList);
+        this.movieUrlList.addAll(movieUrlList);
+        adapter.notifyDataSetChanged();
+        progressLayout.setVisibility(View.INVISIBLE);
+        getListView().setVisibility(View.VISIBLE);
+        if (hasNextPage) {
+            footerView.showText();
+        } else {
+            footerView.hide();
+        }
+        if (movieNameList.size() == 0) {
+            Toast.makeText(getActivity(), "无结果", Toast.LENGTH_LONG).show();
+        }
+    }
 
-	@Override
-	public void failed() {
-	}
+    @Override
+    public void failed() {}
 }
