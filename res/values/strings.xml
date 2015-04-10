@@ -12,14 +12,14 @@
     <string name="action_refresh">刷新</string>
     <string name="action_star">收藏</string>
     <string name="action_share">分享</string>
-    
+    <string name="action_update">检查升级</string>
+
     <!-- activity title -->
     <string name="title_activity_detail">影片详情</string>
     <string name="title_activity_search">搜索</string>
     <string name="title_activity_settings">设置</string>
     <string name="title_activity_starred_movie">我的收藏</string>
     <string name="title_activity_about">关于</string>
-    
     <string name="load_more">加载更多</string>
     <string name="search_result">搜索结果</string>
     <string name="search_hint">请输入影片名称</string>
@@ -27,10 +27,17 @@
     <string name="label_choose_menu">左侧菜单</string>
     <string name="title_choose_menu">请选择左侧菜单</string>
     <string name="content_choose_menu">点击选择左侧菜单</string>
-    
+    <string name="label_choose_site">站点</string>
+    <string name="title_choose_site">请选择站点</string>
+    <string name="content_choose_site">点击选择站点</string>
+
     <!-- about -->
     <string name="about_content">该应用是阳光电影的Android版客户端（非官方），通过解析阳光电影的网页获取影片数据。该应用为开源项目，源码托管于github.com。如果有任何问题或者建议，都可以到github上进行反馈，或者发送邮件至qdu_yanghui@126.com（邮件中请注明“阳光电影安卓客户端”及版本号，详细说明建议或遇到的问题）。</string>
     <string name="project_add_label">源码地址：</string>
     <string name="project_address">https://github.com/lingzhuzi/MovieHeaven</string>
-    
+    <string name="title_activity_update">UpdateActivity</string>
+    <string name="check_update">检查更新</string>
+    <string name="update_now">立刻更新</string>
+    <string name="update_help">请使用浏览器下载新版本，下载完成后请手动安装</string>
+
 </resources>

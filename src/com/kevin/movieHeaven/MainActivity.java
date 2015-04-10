@@ -126,9 +126,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
-            // Only show items in the action bar relevant to this screen
-            // if the drawer is not showing. Otherwise, let the drawer
-            // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.main, menu);
             restoreActionBar();
             // 获取SearchView对象
@@ -158,9 +155,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         Intent intent;
         switch (id) {
@@ -174,6 +168,10 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             break;
         case R.id.action_about:
             intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
+            break;
+        case R.id.action_update:
+            intent = new Intent(this, UpdateActivity.class);
             startActivity(intent);
             break;
         case R.id.action_refresh:

@@ -16,21 +16,28 @@
 	    <item>游戏下载</item>
 	    <item>手机电影</item>
     </string-array>
-
+    
+    <string-array name="sites">
+		<item>http://www.ygdy8.com</item>
+		<item>http://www.ygdy8.net</item>
+		<item>http://www.dytt8.net</item>
+		<item>http://www.dy2018.com</item>
+	</string-array>
+    
     <string-array name="url">
-		<item>http://www.ygdy8.com/</item>
-		<item>http://www.ygdy8.com/html/gndy/dyzz/list_23_1.html</item>
-	    <item>http://www.ygdy8.com/html/gndy/china/list_4_1.html</item>
-	    <item>http://www.ygdy8.com/html/gndy/oumei/list_7_1.html</item>
-	    <item>http://www.ygdy8.com/html/gndy/rihan/list_6_1.html</item>
-	    <item>http://www.ygdy8.com/html/tv/hytv/list_71_1.html</item>
-	    <item>http://www.ygdy8.com/html/tv/oumeitv/list_9_1.html</item>
-	    <item>http://www.ygdy8.com/html/tv/rihantv/list_8_1.html</item>
-	    <item>http://www.ygdy8.com/html/zongyi2013/list_99_1.html</item>
-	    <item>http://www.ygdy8.com/html/2009zongyi/list_89_1.html</item>
-	    <item>http://www.ygdy8.com/html/dongman/list_16_1.html</item>
-	    <item>http://www.ygdy8.com/html/game/list_19_1.html</item>
-	    <item>http://www.ygdy8.com/html/3gp/3gpmovie/list_30_1.html</item>
+		<item>/</item>
+		<item>/html/gndy/dyzz/list_23_1.html</item>
+	    <item>/html/gndy/china/list_4_1.html</item>
+	    <item>/html/gndy/oumei/list_7_1.html</item>
+	    <item>/html/gndy/rihan/list_6_1.html</item>
+	    <item>/html/tv/hytv/list_71_1.html</item>
+	    <item>/html/tv/oumeitv/list_9_1.html</item>
+	    <item>/html/tv/rihantv/list_8_1.html</item>
+	    <item>/html/zongyi2013/list_99_1.html</item>
+	    <item>/html/2009zongyi/list_89_1.html</item>
+	    <item>/html/dongman/list_16_1.html</item>
+	    <item>/html/game/list_19_1.html</item>
+	    <item>/html/3gp/3gpmovie/list_30_1.html</item>
     </string-array>
 
     <string-array name="index">

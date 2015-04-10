@@ -9,6 +9,14 @@
             android:key="menu_list"
             android:summary="@string/content_choose_menu"
             android:title="@string/label_choose_menu" />
+        
+        <ListPreference
+            android:dialogTitle="@string/title_choose_site"
+            android:entries="@array/sites"
+            android:entryValues="@array/index"
+            android:key="site_list"
+            android:summary="@string/content_choose_site"
+            android:title="@string/label_choose_site" />
     </PreferenceCategory>
 
 </PreferenceScreen>

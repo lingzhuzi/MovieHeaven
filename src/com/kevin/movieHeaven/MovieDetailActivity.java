@@ -5,6 +5,7 @@ import com.activeandroid.query.Select;
 import com.kevin.movieHeaven.R;
 import com.kevin.movieHeaven.models.StarredMovie;
 import com.kevin.movieHeaven.tasks.MovieDetailAsyncTask;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -22,11 +23,12 @@ public class MovieDetailActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
+        
         Intent intent = getIntent();
-        title = intent.getStringExtra("name");
+        title = getMovieName(intent.getStringExtra("name"));
         url = intent.getStringExtra("url");
 
-        setTitle(title);
+        setTitle("影片详情--" + title);
         loadMovieDetails();
     }
 
@@ -76,9 +78,13 @@ public class MovieDetailActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void starThisMovie() {
+    private String getMovieName(String title){
+        return title.replaceAll("(.*)《(.*)》(.*)", "$2");
+    }
+    
+    private void starThisMovie() {        
         if (hasStarred(title, url)) {
-            new Delete().from(StarredMovie.class).where("name = ? and url = ?", title, url).execute();
+            new Delete().from(StarredMovie.class).where("name = ? or url = ?", title, url).execute();
             Toast.makeText(this, "取消收藏成功", Toast.LENGTH_SHORT).show();
         } else {
             new StarredMovie(title, url).save();

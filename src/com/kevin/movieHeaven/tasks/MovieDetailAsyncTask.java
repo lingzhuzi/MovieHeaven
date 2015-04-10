@@ -1,11 +1,14 @@
 package com.kevin.movieHeaven.tasks;
 
 import java.io.IOException;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
 import android.os.AsyncTask;
+import android.util.Log;
 import android.webkit.WebView;
 
 public class MovieDetailAsyncTask extends AsyncTask<String, Integer, String> {
@@ -19,6 +22,7 @@ public class MovieDetailAsyncTask extends AsyncTask<String, Integer, String> {
     @Override
     protected String doInBackground(String... urls) {
         try {
+            Log.d("movie detal", urls[0]);
             Document doc = Jsoup.connect(urls[0]).get();
 
             Elements contents = doc.select("#Zoom");

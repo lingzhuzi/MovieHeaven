@@ -41,7 +41,7 @@ public class SearchResultActivity extends ActionBarActivity {
             String keyWord = intent.getStringExtra(SearchManager.QUERY);
             ActionBar actionBar = getSupportActionBar();
             actionBar.setDisplayShowTitleEnabled(true);
-            actionBar.setTitle(keyWord + "-搜索结果");
+            actionBar.setTitle(keyWord + "--搜索结果");
             return keyWord; // 获取搜索内容
         }
 

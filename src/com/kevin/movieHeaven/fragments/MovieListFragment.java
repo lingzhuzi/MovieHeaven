@@ -2,11 +2,14 @@ package com.kevin.movieHeaven.fragments;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.kevin.movieHeaven.MovieHeavenApplication;
 import com.kevin.movieHeaven.R;
 import com.kevin.movieHeaven.tasks.MovieListAsyncTask;
 import com.kevin.movieHeaven.utils.FooterView;
 import com.kevin.movieHeaven.utils.MovieListCallback;
 import com.kevin.movieHeaven.MovieDetailActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -83,7 +86,9 @@ public class MovieListFragment extends ListFragment implements MovieListCallback
     protected String getUrl() {
         String url = getArguments().getString(SECTION_URL);
         url = url.replaceAll("(list_[0-9]+_)([0-9]+)(.html)", "$1" + currentPage + "$3");
-        return url;
+        MovieHeavenApplication app = (MovieHeavenApplication) getActivity().getApplication();
+        String site = app.getSite();
+        return site + url;
     }
 
     @Override
