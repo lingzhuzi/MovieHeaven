@@ -11,19 +11,24 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class MovieDetailActivity extends ActionBarActivity {
 
     private String title;
     private String url;
+    protected LinearLayout progressLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
-        
+        progressLayout = (LinearLayout) findViewById(R.id.progress_layout);
+
         Intent intent = getIntent();
         title = getMovieName(intent.getStringExtra("name"));
         url = intent.getStringExtra("url");
@@ -34,8 +39,18 @@ public class MovieDetailActivity extends ActionBarActivity {
 
     private void loadMovieDetails() {
         WebView detailView = (WebView) findViewById(R.id.detail_view);
+        detailView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                if (newProgress >= 100) {
+                    progressLayout.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
         MovieDetailAsyncTask task = new MovieDetailAsyncTask(detailView);
         task.execute(url);
+        progressLayout.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -78,11 +93,11 @@ public class MovieDetailActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private String getMovieName(String title){
+    private String getMovieName(String title) {
         return title.replaceAll("(.*)《(.*)》(.*)", "$2");
     }
-    
-    private void starThisMovie() {        
+
+    private void starThisMovie() {
         if (hasStarred(title, url)) {
             new Delete().from(StarredMovie.class).where("name = ? or url = ?", title, url).execute();
             Toast.makeText(this, "取消收藏成功", Toast.LENGTH_SHORT).show();
